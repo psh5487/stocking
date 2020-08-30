@@ -1,0 +1,66 @@
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+</style>
+
+<% if user_signed_in? %>
+
+<!--코스피 100대 기업 로고 이미지-->
+<br><br>
+<div class="bag">
+    <% @bags.each do |k| %>
+      <%= link_to image_tag(OneHundBrand.all[(k.one_hund_brand_id)-1].brand_img_src), one_hund_brand_bag_path(:one_hund_brand => OneHundBrand.all[(k.one_hund_brand_id)-1]), method: "post", title: OneHundBrand.all[(k.one_hund_brand_id)-1].brand_title %>
+    <% end %>
+</div>
+
+<div class="go_to_eval row justify-content-center">
+<div class="go_to col-md-4 col-md-offset-2 col-sm-12 col-xs-12" data-scrollreveal="enter right and move 100px, wait 0.6s" data-scrollreveal-initialized="true" data-scrollreveal-complete="true" style="text-align:center;margin-top:20px;margin-bottm:20px">
+    <%= link_to "담긴 주식 평가하기", my_portfolio_path(:current_user => current_user.id), style:"font-size:25px;font-family:'hanna';color:black;text-decoration:none" %>
+</div>
+<div class="go_to col-md-4 col-sm-12 col-xs-12" data-scrollreveal="enter right and move 100px, wait 0.6s" data-scrollreveal-initialized="true" data-scrollreveal-complete="true" style="text-align:center;margin-top:20px;margin-bottom:20px">
+    <%= link_to "담긴 주식의 최신 뉴스", news_path(:current_user => current_user.id), style: "font-size:25px;font-family:hanna;color:black;text-decoration:none" %>
+</div>
+</div>
+
+<!--<img src="/assets/click.png" style="max-width:100%;margin-top:10px;margin-left: auto; margin-right: auto; display: block;width:50%;height:60px;"/>-->
+
+
+<%= form_tag show_path, class:"navbar-form", id:"search", method: 'get' do %> <%# 검색창 %>
+        <div class="input-group col-xs-12 col-md-9" >
+            <%= text_field_tag :search, params[:search], class:'form-control', placeholder: '회사 검색 (※검색 후 더 담으려면 My 주식 Portfolio로!)' %>
+                <div class="input-group-btn">
+                    <%= button_tag(type: "submit", name: nil, class: "btn btn-default", style:"width:100%;") do %>
+                    <i class="glyphicon glyphicon-search"></i>
+                    <% end %>
+                </div>
+        </div>
+<div style="font-family:'hanna'; text-align: center; color: #736F6E; margin-top: 40px">
+<h3>담고 싶은 주식을 클릭하세요</h3> <h4>(한번 더 클릭하면 사라집니다)</h4>
+</div>
+
+<% end %>
+
+ 
+
+<br>
+
+ 
+    <% @ksearch.each do |k| %>
+        <div class="kospis">
+            <% if current_user.is_bag?(k) %>
+                <%= link_to image_tag(k.brand_img_src), one_hund_brand_bag_path(:one_hund_brand => k), method: "post", title: k.brand_title %> 
+            <% else %>
+                <%= link_to image_tag(k.brand_img_src), one_hund_brand_bag_path(:one_hund_brand => k), method: "post", title: k.brand_title %> 
+            <% end %>
+        </div>
+    <% end %>
+
+<% else %>
+
+    <h3 class="please" style="font-family:'hanna'; text-align: center; color: #D7A262; font-size:30px; margin-top:200px;">먼저, 회원가입 또는 로그인을 해주세요!!</h3>
+    <!--<img src="/assets/login.png" style="max-width:100%;margin-top:10px;margin-left: auto; margin-top:300px;margin-right: auto; display: block;width:50%;height:60px;"/>-->
+    <div class="col-md-12" style="text-align:center; font-family:'hanna';color:black; font-size:30px;">
+    <!--<%= link_to 'Home', root_path%>-->
+    </div>
+<% end %>
+   

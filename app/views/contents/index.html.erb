@@ -1,0 +1,86 @@
+
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+.sign_up {
+    background-color: #F7E071;
+    border-radius: 20px;
+    margin-top: 84px;
+    margin-bottom: 50px;
+    padding: 5px 10px 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container{
+ width:100%;
+ padding-left:0px;
+ padding-right:0px;
+
+}
+  
+.box{
+  position: relative;
+  width:100%;
+  
+}
+.box:before {
+  display:block;
+  padding-top:50%;
+}
+}
+</style>
+<!--슬라이드형식으로 넘어가는 기능(부트스트랩)-->
+
+
+
+
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  
+  <!-- Indicators --> <!--가운데 정렬 어떻게?ㅠㅠ-->
+  <!--<ol class="carousel-indicators">-->
+  <!--  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+  <!--  <li data-target="#myCarousel" data-slide-to="1"></li>-->
+  <!--  <li data-target="#myCarousel" data-slide-to="2"></li>-->
+  <!--</ol>-->
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active" style="max-height:63vh;">
+    
+     <img  src="/assets/slide33.jpg" alt="intro" style="height:550px;width:100%;"> <!--경로 써줘야 먹힘ㅠ-->
+   
+    </div>
+  
+
+    <div class="item" style="vertical-align:middle;max-height:63vh;">
+      <img src="/assets/back2.png" alt="function" style="height:550px;width:100%;">
+    </div>
+
+    <div class="item" style="vertical-align:middle;max-height:63vh;">
+      <img src="/assets/dow_back.jpg" alt="challenge" style="height:550px;width:100%;">
+    </div>
+
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!--설명 사진-->
+<div class="wholebox">
+<img src="/assets/slide11.jpg" style="margin-left: auto; margin-right: auto;margin-bottom:50px;display: block;margin-top: 50px; HEIght:auto;width:70%"/>
+<img src="/assets/slide22.jpg" style="margin-left: auto; margin-right: auto;margin-bottom:50px; display: block;margin-top: 20px; HEIght:auto;width:70%"/>
+</div>
+
+<div class="sign_up">
+  <h3><%= link_to '스토킹 시작하기', show_path ,style:"font-size:25px; text-decoration:none; color:#736F6E; vertical-align:middle; font-family:'hanna'" %></h3>
+</div>
+

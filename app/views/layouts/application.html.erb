@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%#= favicon_link_tag 'favicon.png' %>
+  <title>STOCKING</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  
+  
+<!--  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">-->
+<!--  <meta charset="utf-8">-->
+    
+<!--<link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">-->
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
+
+<!-- 부가적인 테마 -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">-->
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
+
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!--<script>-->
+<!--jQuery(document).ready(function($) {-->
+<!--        $(".scroll").click(function(event){            -->
+<!--                event.preventDefault();-->
+<!--                $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);-->
+<!--        });-->
+<!--});-->
+<!--</script>-->
+
+<!--<script type="text/javascript">-->
+<!--  setInterval(function(){-->
+<!--    $(".blinkEle").toggle();-->
+<!--  }, 200);-->
+<!--</script>-->
+
+<script type="text/javascript">
+$(window).load(function() {    
+     $('#loading').hide();  
+    });
+</script>
+
+
+</head>
+
+<!--<body>-->
+
+
+
+   <div class = "wrap">
+      <a><img src="/assets/home.jpg" style="margin-top:20px; margin-bottom:40px;"></a>
+      
+      <% if user_signed_in? %>
+        <ul class="col-xm-12">
+          <li><%=current_user.email %> 님 환영합니다!</li>
+          <li style="float:left"><strong><%= link_to 'Log Out 하기', destroy_user_session_path, method: 'delete' %></strong></li>
+          <li style="float:right"><strong><%= link_to 'ABOUT', madeby_path %></strong></li>
+          <li style="float:right;"><strong><%= link_to 'My 주식 Portfolio', show_path, style: "color: coral;" %></strong></li>
+          <li style="float:right"><strong><%= link_to 'Home', root_path%></strong></li>
+        </ul>
+      <% else %>
+      
+        <ul>
+          <li><%= link_to 'Home', root_path%></li>
+          <li style="float:right"><%= link_to 'ABOUT', madeby_path %></li>
+          <li style="float:right"><a href="#ModalLogin" data-toggle="modal" data-target="#ModalLogin">Log In</a></li>
+          <li style="float:right"><a href="#ModalSignUp" data-toggle="modal" data-target="#ModalSignUp">회원가입</a></li>
+          <!--<li style="float:right;color:coral"><span class="blinkEle"><a href="#target" class="scroll" style="color:coral;font-size:17px;">START</a></span></li>-->
+        </ul>
+         <br>
+      <% end %>
+   </div>
+    
+
+
+
+
+
+    
+<!-- Modal Login -->
+<div class="modal fade" id="ModalLogin" role="dialog">
+  <div class="modal-dialog modal-lg">
+    
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <%# devise sign in %>
+        <div class="panel panel-default devise-bs">
+          <div class="panel-heading" style="background-color:#fcd341;height:40px;">
+           <span style="font-family:'hanna';text-align: center;margin-left: auto;margin-right: auto;display: block;">로 그 인</span> 
+          </div>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f| %>
+
+         
+            
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password %>
+                <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
+              </div>
+              <% if devise_mapping.rememberable? %>
+                <div class="checkbox">
+                  <%= f.label :remember_me do %>
+                    <%= f.check_box :remember_me %> <%= t('.remember_me', default: 'Remember me') %>
+                  <% end %>
+                </div>
+              <% end %>
+              <%= f.submit  t('.sign_in', default: 'Sign in'), class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+          
+          
+        </div>
+       
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Sign UP-->
+<div class="modal fade" id="ModalSignUp" role="dialog">
+  <div class="modal-dialog modal-lg">
+    
+    <!-- Modal content-->
+    <div class="modal-content"  style="margin-left: auto; margin-right: auto; display: block; margin-top:40px;">
+      <div class="modal-body">
+        <%# devise sign Up %>
+<%= bootstrap_devise_error_messages! %>
+
+  <div class="panel-heading" style="background-color:#fcd341">
+ <span style="font-family:'hanna';text-align: center;margin-left: auto;margin-right: auto;display: block;">회 원 가 입</span> 
+  </div>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+ </div>
+   
+       
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ 
+  <div class="container"> <!--  yield를 감싸는 컨테이너는 왜 필요한 거야? -->
+    <%= yield %>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <div class="footer">
+    <span style="text-align: center; color: white;">
+    Developed by Likelion at SKKU<br>
+    $ Team Stocking
+    </span>
+  </div> 
+
+</body>
+  
+</html>
+
+
+<style>
+.btn-primary {
+    color: #fff;
+    background-color: #736F6E;
+    border-color: #736F6E;
+} 
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: coral;
+    border-color: coral;
+}
+
+.modal-content {
+    margin-left: auto; margin-right: auto; display: block;width:35%;height:auto;
+}
+
+
+</style>

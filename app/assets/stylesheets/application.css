@@ -1,0 +1,239 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "devise_bootstrap_views";
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+ 
+body {
+    padding-top: 30px;
+}
+
+
+/*header*/
+.logos {
+    display: inline;
+}
+
+
+.modal-footer{
+    border-top: 0;
+    margin-top: 0px;
+    padding: 10px 20px 20px;
+}
+.kospis{
+    display: inline;
+}
+
+.btn-primary {
+    color:#fafa96;
+    background-color: #fafa96;
+    border-color: #fafa96;
+    width: 100%;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    width: 50%;
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+.kakao {
+    position: relative;
+    width: 100%;
+}
+
+.footer {
+    text-align: center;
+    width: 100%;
+    margin-left: 0px; 
+    margin-right: 0px; 
+    margin-top: 30px;
+    background-color: #736F6E;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+#search{
+    text-align: center;
+}
+.wrap {
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size : 20px;
+    margin: 0px auto;
+    width: 100%;
+    height: 100px;
+    display: block;
+    position: relative;
+    margin-bottom: 40px;
+}
+.wrap img{
+    width: 300px;
+    height: 100px;
+    margin-left: 35px;
+}
+.wrap::after{
+    background-image: url("/assets/lens.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; 
+}
+.wrap ul{
+    opacity: 0.8;
+}
+ul {
+    list-style-type: none;
+    margin-top:20px;
+    margin: 20px;
+    padding: 0;
+    overflow: hidden;
+    /*border-top: 2px solid #ffe00f;*/
+    max-width: 100%;
+    /*height:50px;*/
+    
+}
+li {
+    
+    float:left;
+    display: block;
+    color: #FEC703;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+li>a{
+    text-decoration:none;
+}
+li a:link {
+    color: #FEC703;
+    text-decoration:none;
+    font-size:15px;
+    
+}
+li a:visited {
+    color: #fcd341;
+}
+
+/* mouse over link */
+li a:hover {
+    font-weight: 900;
+    color: #D7A262;
+}
+
+img {
+    /*height: 150px;*/
+    margin: 0;
+}
+   
+a > img{
+    height: 70px;
+    max-height: 70px;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: inherit;
+
+    font-size: 20%;
+}
+
+
+
+.panel-heading h4 {
+    margin: 10px;
+    font-family: inherit;
+    text-align: center;
+    font-size: 28px;
+}
+
+.modal-body {
+    position: relative;
+    padding: 10px;
+}
+
+
+
+a:hover {
+    font-weight:bold;
+}
+.selected_brand{
+    margin-bottom: 5px;
+    /*display: flex;*/
+}
+
+.selected_brand_img img{
+    margin-top: 30px;
+    height: 70px;
+    width: auto;
+}
+
+.bag {
+    margin-top: 100px;
+}
+.bag a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.eval_explain, .index, .index_explain {
+    border: 2px solid #E6BB27;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.expect{
+    padding-left: 60px;
+    padding-right: 10px;
+}
+
+.buffet{
+    margin-top: 50px;
+}
+
+.buffet_eval{
+    font-size: 25px;
+    padding-left: 60px;
+    padding-right: 10px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.buffet_img{
+    display:flex;
+    justify-content: center;
+}

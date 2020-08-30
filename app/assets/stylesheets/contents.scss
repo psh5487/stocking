@@ -1,0 +1,207 @@
+// .bag{
+//     margin: 0 auto;
+//     width: 500px;
+//     height: 300px;
+//     border: 0px 5px 5px 0px solid #252625;
+//     border-radius: 10%;
+//     background: linear-gradient(#040505, #4a4c4a);
+//     box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+//     transition:all 0.1s;
+// }
+// .btn1:active{
+//     transform: translateY(10px);        
+// }
+// .portfolio_bag{
+//     margin-top: 50px;
+// }
+
+/*로고 크기 조절*/
+@import url('//cdn.jsdelivr.net/font-iropke-batang/1.1/font-iropke-batang.css');
+body {
+    font-family: 'Iropke Batang', serif;
+}
+
+.bag img {
+    height: 70px;
+    margin: 30px;
+}
+
+.kospis img{
+    height: 70px;
+    margin: 30px;
+}
+
+/*가방*/
+.bag {
+    margin-top: 30px;
+    padding: 5px;
+    border: 3px solid #E6BB27;
+    border-radius: 20px;
+}
+
+.bag_info{
+    font-family: 'Haan YGodic250', 'serif';
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+/*show페이지 변화*/
+.kospis img:hover{
+    border: 3px solid #E6BB27;
+    transition: all 0.2s ease-in-out;
+}
+
+.bag img:hover{
+    border: 2px solid black;
+    transition: all 0.2s ease-in-out;
+}
+
+.go_to{
+    background-color: #F7E071;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    margin-right:20px;
+    padding: 20px;
+    width:10%;
+    height:80px;
+}
+
+.go_to:hover{
+    background-color:#D7A262;
+}
+
+.input-group{
+    margin-top: 45px;
+}
+
+
+/*회원가입, 로그인 버튼*/
+.main{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.sign_up{
+    background-color: #F7E071;
+    border-radius: 20px;
+    margin-top: 85px;
+    margin-bottom: 50px;
+    padding: 5px 10px 5px 10px;
+    width: 50%;
+}
+
+.sign_up h3{
+    font-family: 'Haan YGodic250', 'serif';
+    font-weight: 700;
+}
+
+.sign_up:hover{
+    font-weight: bold;
+    background-color: #D7A262;
+}
+
+/*캐러솔 이미지*/
+#myCarousel{
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+ol.carousel-indicators li{
+    justify-content: center;
+}
+
+.img{
+    height: 100%;
+    width: auto;
+}
+
+/*뉴스 페이지*/
+
+.news_text{
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.to_news{
+    z-index: 2;
+    background-color: #F7E071;
+    // border-radius: 20px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right:20px;
+    padding: 20px;
+    width:20%;
+    height:70px;
+    font-family:'hanna';
+    font-size: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.to_news:hover{
+    background-color:#D7A262;
+}
+
+.to_news a{
+    color: #736F6E;
+    font-weight: 700;
+}
+
+.to_news a:hover{
+   text-decoration: none;
+   color: black;
+}
+
+
+.newsbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newstitle{
+    z-index: 1;
+    width:20%;
+    margin-top: -30px;
+    margin-bottom: 30px;
+    margin-left:20px;
+    margin-right:20px;
+    padding: 20px;
+    background-color:#fbf8ec;
+    // border-radius: 20px;
+    height: 230px;
+}
+
+/*마이 포트폴리오*/
+.bag img {
+    height: 100%;
+    /* margin: 30px; */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom:-10px;
+} 
+
+.my_portfolio{
+    font-family:'Malgun Gothic';
+    font-weight: 800;
+}
+
+.expect, .buffet_eval, .eval_explain, .index{
+    border: 2px solid #E6BB27;
+    margin-bottom: 20px;
+}
+
+.eval_title{
+    color: #D7A262;
+}
+
+.index{
+    color: grey;
+}

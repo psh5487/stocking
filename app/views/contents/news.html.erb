@@ -1,0 +1,33 @@
+<style>
+ @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+ @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+</style>
+<html lang="ko">
+<meta charset="UTF-8">
+
+<br><br>
+<div class="bag">
+    <% @bags.each do |k| %>
+      <%= image_tag(OneHundBrand.all[(k.one_hund_brand_id)-1].brand_img_src) %> <br>
+    <% end %>
+</div>
+
+<h3 class="news_text" style="font-family:'hanna'">담긴 주식들의 최신 뉴스</h3>
+
+<% @bags.each do |k| %>
+  <div class="newsbox col-md-4 col-sm-6">
+    <div class="to_news" style="width:80%">
+    <%= link_to OneHundBrand.all[(k.one_hund_brand_id)-1].brand_title + " news 더 보러가기", "http://finance.naver.com/item/news_news.nhn?code=#{OneHundBrand.all[(k.one_hund_brand_id)-1].brand_number}&page=1", target: '_blank' %>
+    </div>
+    <div class="newstitle col-md-3 col-sm-4" style="width:80%">
+        <% agent = Mechanize.new %>
+        <% page = agent.get"http://finance.naver.com/item/news_news.nhn?code=#{OneHundBrand.all[(k.one_hund_brand_id)-1].brand_number}&page=1" %>
+        <br>
+        <%= link_to "· "+page.search('td.title')[0].children.text, "http://finance.naver.com#{page.search('a')[0].attributes["href"].value}" , style:"color:black;text-decoration:none;", target: '_blank'%> <br>
+        <%= link_to "· "+page.search('td.title')[1].children.text, "http://finance.naver.com#{page.search('a')[1].attributes["href"].value}" , style:"color:black;text-decoration:none;", target: '_blank'%> <br>
+        <%= link_to "· "+page.search('td.title')[2].children.text, "http://finance.naver.com#{page.search('a')[2].attributes["href"].value}" , style:"color:black;text-decoration:none;", target: '_blank'%> <br>
+        <%= link_to "· "+page.search('td.title')[3].children.text, "http://finance.naver.com#{page.search('a')[3].attributes["href"].value}" , style:"color:black;text-decoration:none;", target: '_blank'%> 
+    </div>
+  </div>
+<% end %> 

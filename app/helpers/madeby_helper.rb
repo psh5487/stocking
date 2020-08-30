@@ -1,0 +1,2 @@
+module MadebyHelper
+end

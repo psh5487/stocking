@@ -1,0 +1,229 @@
+<style>
+ @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+ @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+ 
+ .style_image{
+     margin-bottom:10px;
+ }
+ .h10{
+     height:10px;
+ }
+ 
+</style>
+
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!--<script>-->
+<!--jQuery(document).ready(function($) {-->
+<!--        $(".scroll").click(function(event){            -->
+<!--                event.preventDefault();-->
+<!--                $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);-->
+<!--        });-->
+<!--});-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+<!--  setInterval(function(){-->
+<!--    $(".blinkEle").toggle();-->
+<!--  }, 3500);-->
+<!--</script>-->
+</head>
+
+<body>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!--<script src="/js/bootstrap.min.js"></script>-->
+
+<!--<script>-->
+<!--$(document).on('click',function(){-->
+<!--$('.collapse').collapse('hide');-->
+<!--})-->
+<!--</script> -->
+
+<!--마이 포트폴리오-->
+<div class="my_portfolio">
+    <div class="my_portfolio_box">
+        <div class="eval_bag">
+              <div class="buffet">
+                <br><br><br>
+                <h2 class="eval_title" style="font-family: hanna; text-align:center">당신의 포트폴리오 기대수익률</h2> <br> 
+                <div class="expect" style="padding:auto">
+        
+                    <% for i in 0..(@bags.length-1) %>
+                      <h2 style="text-align:left; font-family: hanna">  
+                      <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %>의 기대수익률: 
+                      <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_dpsr %> </h2>
+                    <% end %>  
+                    
+                    <br>
+                    <span style="font-family:'hanna'; text-align:center;"><h2>총 기대수익률 = 각 주식들의 기대수익률의 합 X 1/<%= @bags.length %> = <span style="color:red;"><%= @dpsr %></span> 입니다.</h2>
+                        <h4>(※ 1을 기준으로 얼마의 이익을 얻을지에 대한 산술적 계산. 즉, 1은 노이득, 노손해!)</h4></span><br>
+                    
+                </div><br><br>   
+                
+                
+                <h2 class="eval_title" style="font-family: hanna">워렌버핏의 투자 기준으로 보는 당신의 포트폴리오 평가</h2><br>
+                <div class="buffet_eval" style="font-family: hanna">   
+            
+                   <% if @good_brand.present? %>
+                     
+                        <% for i in 0..(@good_brand.length-1) %>
+                           <%= @good_brand[i] %>는 <b><span style="color:blue">적절합니다.</a></span></b><br>
+                        <% end %>
+                        
+                  <% end %>    
+                    <% if @bad_brand.present? %>
+                        <% for i in 0..(@bad_brand.length-1) %>
+                         <%= @bad_brand[i] %>는 <b><span style="color:red">부적절합니다.</a></span></b><br> 
+                        <% end %>
+                    <% end %>
+             
+                <h4 style="font-family: hanna">(※ 워렌버핏의 투자기준은 현실적으로 우리나라 주식에 그대로 적용하기에는 기준이 너무 높기 때문에, ROE기준을 낮추었습니다.) </h4><br>          
+                <img src="/assets/buffet.jpg" alt="Buffet" style="margin-bottom:10px; width:600px; height:400px"><br>
+                
+                </div>
+                
+                <div class="eval_explain">
+                <h4 style="font-family:hanna">*평가 Process Deep한 해설*</h4><br>
+     
+                <h4 style="font-family:hanna; color:coral;"> >> 당신의 포트폴리오 기대수익률 어떻게 구했을까요?</h4> <br>
+    
+                개별주식들의 기대수익률 × 개별주식들의 구성비<br> 
+                (개별주식들의 기대수익률 = 배당수익률 + 주가상승률)<br><br>
+                
+                <h4 style="font-family:hanna; color:coral;"> >> 스토킹은 “추세분석법”을 적용하여 포트폴리오의 기대수익률을 측정합니다!</h4> <br> 
+                 
+                 > 기대수익률을 구하는 대표적인 방법: 추세분석법 & 시나리오 분석법<br><br>
+    
+                - 추세분석법이란? <br> 
+                자산의 장기 수익률을 역사적으로 분석하여 미래의 수익률로 사용하는 방법을 의미합니다.<br>
+                주로 미국과 영국 같이 자본시장이 오래 발달하고 데이터가 많을 경우 사용이 편리하지만, 신흥시장 등에는 적용이 어려울 수 있습니다.<br><br>
+                                
+                - 시나리오분석법이란? <br>
+                시나리오를 짜서 수익률을 측정하는 방법입니다. 주요 경제변수의 예상되는 변화를 시나리오로 구성하고, 시나리오별로 발생확률을 추산하여 기대수익률을 추정합니다.<br><br>
+                
+                 
+                <h4 style="font-family:hanna; color:coral;"> >> 추세분석법은 "영구성장모델(DDM)"을 바탕으로 합니다. (Gordon의 Constant Growth Model)</h4> <br> 
+                
+                - ‘영구 성장 모델’ 의 두 가지 가정<br>  
+                1. 기업이 계속 존재함.<br>
+                2. 주당배당률이 고정돼있음.<br>
+                → 기업이 계속하여 존재한다고 가정하였을 때,<br>
+                  기업 한 주의 주식가치=미래에 받을 배당금들의 가치를 현재가치로 환산한 값들의 합<br><br>
+                
+                즉, V0(현재 한주의 주식가치) = D1(1년후 받을 배당금)/(1+k)(할인율) + D2(2년후 받을 배당금)/(1+k)^2 + D3/(1+k)^3...<br>
+                (※ V는 Value, D는 Dividend, g는 growth rate)<br>
+                (※ 1번 가정에 의하여 g는 배당금상승률이며, 2번 가정에 의하여 g는 일정합니다.)<br><br>
+                
+                따라서, D1= D0(1+g), D2= D1(1+g) = D0(1+g)^2 <br>
+                        V0 = D0(1+g)/(1+k) + D0(1+g)^2/(1+k)^2...<br>
+                (※ 무한등비수열 공식에 의하여, V0 = D0(1+g)/k-g = D1/k-g) <br>
+                (※ 4년간의 평균 배당금상승률을 적용하였습니다.)<br>
+                (※ g는 배당금의 상승률이지만, ‘영구성장모델’에 따르면, g는 주식성장률과도 일치합니다. 그래서 스토킹에서는 g를 기대수익률로 가정하였습니다.) <br>
+                </div><br><br>
+                
+            
+            <h2 class="eval_title" style="font-family:hanna">각 주식 별 실시간 분석</h2>
+            <% for i in 0..(@bags.length-1) %>
+                <div class="selected_brand">
+                    <div class="selected_brand_img">
+                      <%= image_tag(OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_img_src)  %><br>
+                    </div>
+                    
+                    <div class="selected_brand_analysis">
+                      
+                      <h4 class="index" style="font-family:hanna">
+                      현재 주식가격: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price %><br>
+                      EPS: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_eps %><br>
+                      BPS: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bps %><br>
+                      PBR: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price / OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bps %><br>
+                      PER: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bizprofitratio %><br>
+                      업종 PER: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bizper %><br>
+                      ROE: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_roe %><br>
+                      현금배당수익률: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_cashprofitratio %>%<br>
+                      순이익률: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_netincomeratio %><br>
+                      52주 Beta: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_beta %><br>
+                      Portfolio Beta(같은 수의 주식을 산다고 가정하였을 때):
+                       <% for k in 0..(@bags.length-1) %> 
+                        1/<%= @bags.length %> * <%= OneHundBrand.all[(@bags[k].one_hund_brand_id)-1].brand_beta %>  
+                       <% end %>
+                      = <%= @beta %>
+                      </h4>
+                      
+                      
+                      <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)" 
+                      style="text-decoration:none; margin-left: 20px; margin-top: 10px; color:#736F6E;"> 
+                        지표 해설 Click ▼▲
+
+                      </a><div style="DISPLAY: none">
+                    
+                      
+                      <br>
+                      *EPS = Earnings Per Share. 당기순이익. Net Income/All Share<br>
+                      - 기업이 일정 기간 동안 얻은 모든 수익에서 지출한 모든 비용을 공제하고 <span style="color:coral">순수한 이익으로 남은 몫.</span><br>
+                      - 당기의 순이익이 매년 쌓여서 이익잉여금으로 된다.<br><br>  
+                      
+                      *BPS = Book value Per Share. 주당순자산가치. Total Equity/All Share<br>
+                      - 기업의 총자산(자본+부채)에서 부채를 빼면 기업의 순자산이 남는데, <span style="color:coral">기업의 순자산을 발행주식수로 나눈 것.</span><br> 
+                      - 기업이 활동을 중단한 뒤 그 자산을 모든 주주들에게 나눠줄 경우 1주당 얼마씩 배분되는가를 나타내는 것으로,<br> 
+                      <span style="color:yellowgreen">BPS가 높을수록 수익성 및 재무건전성이 높아 투자가치가 높은 기업</span>이라 할 수 있다.<br><br>
+                      
+                      *PBR = Price Book-value Ratio. 주가 순자산비율. 주가/BPS<br>
+                      - <span style="color:coral">1주당 순자산과 비교한 수치</span>. 즉, 주가가 순자산에 비해 1주당 몇 배로 거래되고 있는지를 측정하는 지표이다.<br>
+                      - <span style="color:yellowgreen">보통, PBR이 1보다 작으면 저평가</span>되어있다고 판단한다.<br><br> 
+                      
+                      *PER = Price Earning Ratio. 주가수익비율. Price Per Share/EPS<br>
+                      - 현재 <span style="color:#E6BB27"><%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %></span>의 PER은 
+                      
+                      <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price %>/<%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_eps %>으로 <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bizprofitratio %>.<br> 
+                      - <span style="color:yellowgreen">PER가 업종PER보다 높으면 주가가 고평가 되있는 것을 말하고, 낮으면 저평가 되있다는 것을 의미한다.</span><br> 
+                      
+                      - PER의 한계: PER은 순이익이 <span style="color:yellowgreen">언제적 기준인가</span> 살펴야 한다. 보통 어떤 회사의 PER를 구할 때는 `회사의 현재 주가/회사의 직전년도 순이익'을 공식으로 쓴다. 현재 주가를 작년 실적으로 나눈다는 얘기다. 
+                      이게 맞는 기준일까? 과거의 추세가 앞으로도 이어진다면 맞지만 그렇지 않다면 부정확한 수치가 될 소지가 다분하다. `현재 주가/현재 순이익'으로 계산하는 것이 나아 보인다. 
+                      그러나 현재 시점에서 회사가 올해나 분기중 얼마나 실적을 낼지는 가늠하기 어렵다.<br><br>
+
+                      *ROE = Return On Equity. 자기자본이익률. 당기순이익/평균 자기자본 ×100 <br>
+                      - <span style="color:coral">투입한 자기자본이 얼마만큼의 이익을 냈는지</span>를 나타내는 지표.<br>
+                      - <span style="color:yellowgreen">ROE가 높을수록 효율적인 영업활동을 했다는 뜻이다.</span><br><br>
+                      
+                      *배당률이란?<br> 
+                      - <span style="color:coral">1주당 액면금액에 대해서 지급되는 배당금의 비율.</span><br> 
+                      - 배당에는 현금배당과 주식배당이 있는데 <span style="color:yellowgreen">보통 현금배당률</span>을 말한다.<br><br>
+                      
+                      *현금배당수익률이란? 1주당 배당금/ 현재 주가<br>
+                      - <span style="color:coral">배당금이 현재 주가의 몇% 인가</span>를 나타내는 지표.<br>
+                      - <span style="color:yellowgreen">실제 투자했을 때 얼마나 수익을 올릴 수 있는지</span>를 나타낸다.<br>
+                      - 예를 들어, 현재 <span style="color:#E6BB27"> <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %></span> 한주를 사게되면 
+                      <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price %>*0.0<%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_cashprofitratio %>인 <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price * 0.01 * OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_cashprofitratio %>를 배당금으로 받게 된다.<br><br>
+                      
+                      
+                      *beta(베타)란?<br> 
+                      - <span style="color:coral">개별 기업의 투자민감도.</span><br> 
+                      - 시장의 움직임을 1로 규정했을 때 각 기업이 시장의 움직임에 비해 얼마나 민감한지를 보여준다. 그래서 <span style="color:yellowgreen">개별 기업의 위험을 뜻하기도</span> 한다.<br>  
+                      - <span style="color:yellowgreen">특정 한 주식의 베타와 포트폴리오 베타</span>는 다릅니다. 특정 한 주식의 베타란 그 특정 주식의 수익률(주가의 변동으로 측정)이 2016년도 1째주 R1, 2째주 R2 ... 52째주 R52 라 할 때, 각 수익률의 합들의 변동성을 말한다. 
+                      포트폴리오 베타란  <img src="/assets/beta.png", style="width: 150px; height: 75px">을 의미한다. 
+                    
+            
+                      </div>                        
+                       
+                     </div>
+                    </div>  
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+</body>
+
+    <%# @bags.each do |@bags[i]| %>
+      <%#=     , title: OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %>
+    <%# end %>
+    <!--brand_per-->
+    <!--  t.float :brand_bizper-->
+    <!--  t.float :brand_pbr-->
+    <!--  t.float :brand_cashprofitratio-->
+    <!--  t.float :brand_beta-->
+    <!--  t.float :brand_bizprofitratio-->
+    <!--  t.float :brand_netincomeratio-->
+    <!--  t.float :brand_roe-->
+   
+   

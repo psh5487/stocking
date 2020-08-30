@@ -1,0 +1,99 @@
+                
+<!--윗파트 원본-->
+                당신의 포트폴리오의 기대수익률은 개별주식들의 기대수익률 * 개별주식들의 구성비로 구할 수 있습니다. 
+                개별주식의 기대수익률은 배당수익률 + 주가상승률로 구할 수 있습니다. 포트폴리오의 기대수익률에서 배당수익률을 따로 포함하지 않는 것은 일반적인 관행입니다. 
+                실제 주식투자에서는 이론과 달리 기대수익률을 구하는 데에 많은 어려움이 있습니다. 실제 현장에서 기대수익률을 구하려면 상당히 많은 변수가 필요하기 때문입니다.
+                대표적인 기대수익률을 구하는 방법으로는 추세분석법과 시나리오 분석법이 있습니다. 
+                    추세분석법이란 자산의 장기 수익률을 역사적으로 분석하여 미래의 수익률로 사용하는 방법을 의미합니다.
+                    주로 미국과 영국 같이 자본시장이 오래 발달하고 데이터가 많을 경우 사용이 편리하나 신흥시장 등에는 적용이 어려울 수 있습니다.
+                
+                    시나리오분석법이란 말 그대로 시나리오를 짜서 수익률을 측정하는 방법입니다. 주요 경제변수의 예상되는 변화를 시나리오로 구성하고, 시나리오별로 발생확률을
+                    추산하여 이를 통해 기대수익률을 추정합니다. 대부분의 증권회사들이 쓰는 방법입니다. 
+                우리는 여기서 추세분석법을 적용하여 우리의 포트폴리오의 기대수익률을 측정하겠습니다.
+                추세분석법은 Gordon의 Constant Growth Model, 다른말로 영구성장모델(DDM)을 바탕으로 합니다. 영구 성장 모델은 두가지를 가정합니다. 
+                1. 기업이 계속하여 존속
+                2. 고정된 비율의 주당배당률 
+                
+                기업이 계속하여 존속한다고 가정하였을 때, 기업 한주의 주식가치는 미래에 받을 배당금들의 가치를 현재가치로 환산한 값들의 합입니다. 
+                V0(현재 한주의 주식가치) = D1(1년후 받을 배당금)/(1+k)(할인율) + D2(2년후 받을 배당금)/(1+k)^2 + D3/(1+k)^3...
+                V는 Value의 약자입니다.
+                D는 Dividend의 약자입니다.
+                g는 growth rate의 약자입니다.
+                (가정에 의하여 g는 배당금상승률, g는 가정2번에 의하여 일정합니다. 따라서 D1= D0(1+g), D2= D1(1+g) = D0(1+g)^2입니다.) V0 = D0(1+g)/(1+k) + D0(1+g)^2/(1+k)^2...
+                (무한등비수열 공식에 의하여) V0 = D0(1+g)/k-g = D1/k-g 
+                
+                *4년간의 평균 배당금상승률을 적용하였습니다.
+                g는 배당금의 상승률이지만, Gordon의 Constant Growth Model에 따르면, g는 주식성장률과 일치한다. 여기서는 g를 기대수익률로 가정하겠습니다. 
+                
+                따라서, 당신의 포트폴리오의 기대수익률은 당신이 포트폴리오에 담은 각각의 주식들의 기대수익률들의 합인
+                <% for i in 0..(@bags.length-1) %>
+                   1/<%= @bags.length %> * (<%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %>의 기대수익률)<%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_dpsr %> +
+                <% end %> = <%= @dpsr %>입니다.
+                
+                <%= image_tag("/assets/buffet.jpg") %> 
+                *워렌버핏의 투자기준은 현실적으로 우리나라 주식에 그대로 적용하기에 기준이 너무 높기 때문에, ROE기준을 낮추었습니다.
+                당신의 포트폴리오는 워렌버핏의 투자기준으로 볼 때, 
+                <% if @good_brand.present? %>
+                    <% for i in 0..(@good_brand.length-1) %>
+                        <%= @good_brand[i] %>는 <b>적절합니다.</b> 
+                    <% end %>
+                <% end %>    
+                <% if @bad_brand.present? %>
+                    <% for i in 0..(@bad_brand.length-1) %>
+                        <%= @bad_brand[i] %>는 <b>부적절합니다.</b> 
+                    <% end %>
+                <% end %> 
+                
+<!--밑파트 원본-->
+                     <div class="selected_brand_analysis">
+                      현재 주식가격: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price %><br>
+                      
+                      EPS: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_eps %><br>
+                      *EPS = Earnings Per Share, 한국어로 당기순이익을 뜻한다. Net Income/All Share
+                      당기순이익이란? 기업이 일정 기간 동안 얻은 모든 수익에서 지출한 모든 비용을 공제하고 순수하게 이익으로 남은 몫을 말한다. 
+                      당기의 순이익이 매년 쌓여서 이익잉여금으로 된다. 즉, 당해연도의 순이익은 재무상태표의 이익잉여금으로 가는 것이고
+                      재무상태표의 이익잉여금이란 계속 누적된 당기순이익을 뜻한다.  
+                      
+                      BPS: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bps %><br>
+                      *BPS = Book value Per Share, 한국어로 주당순자산가치를 뜻한다. Total Equity/All Share
+                      기업의 총자산에서 부채를 빼면 기업의 순자산이 남는데, 이 순자산을 발행주식수로 나눈 수치를 말한다. 
+                      * 자산 = 자본 + 부채 
+                      기업이 활동을 중단한 뒤 그 자산을 모든 주주들에게 나눠줄 경우 1주당 얼마씩 배분되는가를 나타내는 것으로, 
+                      BPS가 높을수록 수익성 및 재무건전성이 높아 투자가치가 높은 기업이라 할 수 있다.
+                      
+                      PBR: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price / OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bps %><br>
+                      *PBR = 주가/BPS
+                      보통, PBR이 1보다 작으면 과소평가되어있다고 판단한다. 
+                      
+                      PER: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bizprofitratio %><br>
+                      업종 PER: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_bizper %><br>
+                      
+                      *PER = Price Earning Ratio, 한국어로 주가수익비율을 뜻한다. Price Per Share/EPS
+                      예를 들어, 현재 <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %>의 PER은 <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price %>/<%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_eps %>으로 <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price / OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_eps %>인 것이다. 
+                      PER가 업종PER보다 높으면 주가가 고평가 되있는 것을 말하고, 낮으면 주가가 저평가 되있다는 것을 의미한다. 
+                      
+                      *PER의 한계: PER은 순이익이 언제 기준인가 하는 부분도 유심히 살펴야 한다. 보통 어떤 회사의 PER를 구할 때는 `회사의 현재 주가/회사의 직전년도 순이익'을 공식으로 쓴다. 쉽게 말해 2011년 현재 주가를 작년 실적으로 나눈다는 얘기다. 이게 맞는 기준일까? 과거의 추세가 앞으로도 이어진다면 맞지만 그렇지 않다면 부정확한 수치가 될 소지가 다분하다. `현재 주가/현재 순이익'으로 계산하는 것이 나아 보인다. 
+                      그러나 현재 시점에서 회사가 올해나 분기중 얼마나 실적을 낼지는 가늠하기 어렵다.
+
+                      현금배당수익률: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_cashprofitratio %>%<br>
+                      *배당률이란? 1주당 액면금액에 대해서 지급되는 배당금의 비율을 말한다. 배당에는 현금배당과 주식배당이 있는데 보통 현금배당률을 말한다.
+                      *배당수익률이란? 배당금을 받고 이전과 같이 동일한 배당률로 배당이 실현된다고 가정해서 현재의 가격으로 주식을 매입을 하여 배당을 받을때 얼마나 수익을 얻는지를 측정하는 수치이다.
+                      예를 들어, 현재 <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %> 한주를 사게되면 
+                      <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price %>*0.0<%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_cashprofitratio %>인 <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_price * 0.01 * OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_cashprofitratio %>를 배당금으로 받게 된다는 의미이다.
+                      
+                      순이익률: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_netincomeratio %><br>
+                      ROE: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_roe %>
+                      
+                       52주베타: <%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_beta %><br>
+                      *beta(베타)란? 당신은 포트폴리오에 <b><%= OneHundBrand.all[(@bags[i].one_hund_brand_id)-1].brand_title %></b>을 담았군요! 포트폴리오의 베타와 특정 한 주식의 베타는 다릅니다. 특정 한 주식의 베타란 그 특정 주식의 수익률(주가의 변동으로 측정)이 2016년도 1째주 R1, 2째주 R2 ... 52째주 R52 라 할 때, 각 수익률의 합들의 변동성을 말합니다. 포트폴리오 베타란  <%= image_tag("/assets/beta.png") %>을 의미합니다. 즉, 개별 기업의 투자민감도를 뜻하는 용어로 개별 기업의 위험을 뜻하기도 한다. 시장의 움직임을 1로 규정했을 때 각 기업이 시장의 움직임에 비해 얼마나 민감한지를 보여주는 투자 지표를 베타(β)라고 합니다.
+                      그렇다면 당신의 포트폴리오의 52주베타를 구해볼까요?(동일한 수의 주식을 산다고 가정) 
+                       
+                       
+                      Portfolio_Beta(같은 수의 주식을 산다고 가정하였을 때) =
+                       <% for k in 0..(@bags.length-1) %> 
+                        1/<%= @bags.length %> * <%= OneHundBrand.all[(@bags[k].one_hund_brand_id)-1].brand_beta %>  
+                       <% end %>
+                      = <%= @beta %>
+                    </div>
+                
+                
